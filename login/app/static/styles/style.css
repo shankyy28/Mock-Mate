@@ -9,8 +9,8 @@ body {
 }
 
 .background-container {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     background-image: url('bluecyber.gif'); 
     background-size: cover;
     background-position: center;
