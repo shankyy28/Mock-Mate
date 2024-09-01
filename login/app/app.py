@@ -1,8 +1,6 @@
-import os
 from flask import Flask, jsonify, render_template
 from dotenv import load_dotenv
 import logging
-from supabase import create_client, Client
 from dbclient import connect_client
 
 load_dotenv()
@@ -13,8 +11,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return {"Title": "Mock Mate",
-            "Date Created": "01-09-2024"}
+    return jsonify({"Title": "Mock Mate",
+                    "Date Created": "01-09-2024"})
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
