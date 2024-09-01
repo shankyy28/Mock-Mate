@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, render_template
 from dotenv import load_dotenv
-import logging
 from dbclient import connect_client
 
 load_dotenv()
