@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, sessions, request
 from dotenv import load_dotenv
 from dbclient import connect_client
+from flask_session import Session
+
 
 load_dotenv()
 
@@ -29,11 +31,14 @@ def login():
     #     error_message = str(response.error)
     #     print(error_message)
     # print(response)
+    request
     return render_template("login.html")
 
-@app.route("/register")
+@app.route("/register", methods = ['POST'])
 def register():
     return render_template("register.html")
+
+# @app.route("/dashboard")
 
 if __name__ == "__main__":
     app.run(debug = True)
