@@ -21,6 +21,14 @@ const LoginSignup = () => {
                 <input type="text" placeholder="Full Name"/>
             </div>}
 
+
+            {action==="Login"?<div></div>:<div className="input">
+                <img src={user_icon} alt=""/>
+                <input type="text" placeholder="Username"/>
+            </div>}
+
+
+
             <div className="input">
                 <img src={email_icon} alt=""/>
                 <input type="email" placeholder="Email Id "/>
@@ -31,7 +39,7 @@ const LoginSignup = () => {
             </div>
 
         </div>
-        {action==="Signup"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click Here!</span></div>}
+        {action==="Sign Up"?<div></div>:<div className="forgot-password">Forgot Password? <span>Click Here!</span></div>}
 
         <div className="submit-container">
             <div className={action==="Login"?"submit gray":"submit"}onClick={()=>{setAction("Sign Up")}}>Sign Up</div>
