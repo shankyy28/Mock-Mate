@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -47,6 +47,7 @@ def login():
         response = db_client.table("login_data").select("password").eq("username", username).execute()
         pass_check = response.data[0]['password']
         if (bcrypt.check_password_hash(pass_check, password)):
+            session["username"] = username
             return jsonify({"login": "true"})
         else:
             return jsonify({"error": "password incorrect"})
