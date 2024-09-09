@@ -1,4 +1,5 @@
 .container{
+    background-image: url('bluecyber.gif');
     display:flex;
     flex-direction: column;
     margin:auto;
@@ -94,6 +95,7 @@
     font-weight: 700;
     cursor: pointer;
 }
+
 .gray{
     background: white;
     color: #676767;

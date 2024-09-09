@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 from dotenv import load_dotenv
 from dbclient import connect_client
 
@@ -9,6 +10,7 @@ db_client = connect_client()
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
+CORS(app)
 
 @app.route("/")
 def index():
@@ -17,6 +19,7 @@ def index():
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
+    print({"call" : "/login"})
     """username = "shanky28"
     password = "1234567890"
     full_name = "Shashank Dimri"
@@ -31,44 +34,50 @@ def login():
         error_message = str(response.error)
         print(error_message)
     print(response)"""
-    username = request.json["username"]
-    password = request.json["password"]
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
     
     response = (db_client.table("login_data").select("*").eq("username", username).execute())
 
-    if (response is None):
+    if (len(response.data) == 0):
         return jsonify({"error": "User does not exist"})
     
-    pass_check = db_client.table("login_data").select("password").eq("username", username).execute()
-    
-    if (bcrypt.check_password_hash(pass_check, password)):
-        return jsonify({"login": "true"})
-    else:
-        return jsonify({"error": "password incorrect"})
+    try:
+        response = db_client.table("login_data").select("password").eq("username", username).execute()
+        pass_check = response.data[0]['password']
+        if (bcrypt.check_password_hash(pass_check, password)):
+            return jsonify({"login": "true"})
+        else:
+            return jsonify({"error": "password incorrect"})
+    except Exception as e:
+        return jsonify({"error" : "Query error"})
 
-@app.route("/register")
-def register():
-    username = request.json["username"]
-    password = request.json["password"]
-    full_name = request.json["full_name"]
-    email_id = request.json["email_id"]
+@app.route("/signup", methods = ['POST'])
+def signup():
+    print({"call" : "/signup"})
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    full_name = data.get("fullname")
+    email_id = data.get("email")
 
-    user_check = (db_client.table("login_data").select("*").eq("username", username).execute())
+    user_check = db_client.table("login_data").select("*").eq("username", username).execute()
 
-    if (user_check is not None):
+    if (len(user_check.data) > 0):
         return jsonify({"error": "User already exists"})
-    
-    hashed_password = bcrypt.generate_password_hash(password = password)
 
-    response = (db_client.table("login_data").insert({"username": username,
-                                         "password": hashed_password,
-                                         "full_name": full_name,
-                                         "email_id": email_id}).execute())
-    if hasattr(response, 'error') and response.error:
-        error_message = str(response.error)
-        return jsonify({"error": error_message})
-    else:
+    hashed_password = bcrypt.generate_password_hash(password = password)
+    hashed_password_str = hashed_password.decode('utf-8')  # stringify
+
+    try:
+        response = (db_client.table("login_data").insert({"username": username,
+                                            "password": hashed_password_str,
+                                            "full_name": full_name,
+                                            "email_id": email_id}).execute())
         return jsonify({"register": "true"})
+    except Exception as e:
+        return jsonify({"error" : "Query error"})
 
 @app.route("/dashboard")
 def dashboard():
