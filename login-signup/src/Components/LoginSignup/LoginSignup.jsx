@@ -36,10 +36,11 @@ const LoginSignup = () => {
             const result = await response.json();
             if (response.ok) {
                 console.log(`${action} successful!`, result);
+                // head to dashboard
             } else {
                 console.error(`${action} failed`, result);
             }
-        } catch (error) {
+        }catch (error) {
             console.error("Error:", error);
         }
     };
@@ -63,7 +64,6 @@ const LoginSignup = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-
                         <div className="input">
                             
                             <img src={email_icon} alt="" />
@@ -75,29 +75,55 @@ const LoginSignup = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
+                        <div className="input">
+                            <img src={user_icon} alt="" />
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="input">
+                            <img src={password_icon} alt="" />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </>
                 )}
 
-                <div className="input">
-                <img src={user_icon} alt="" />
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="input">
-                    <img src={password_icon} alt="" />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleInputChange}
-                    />
-                </div>
+                {action === "Login" && (
+                    <>
+                        <div className="input">
+                            <img src={user_icon} alt="" />
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="input">
+                            <img src={password_icon} alt="" />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    </>
+                )}
+
+
             </div>
 
             {action === "Login" && (

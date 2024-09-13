@@ -63,7 +63,10 @@ def signup():
     full_name = data.get("fullname")
     email_id = data.get("email")
 
-    user_check = db_client.table("login_data").select("*").eq("username", username).execute()
+    try:
+        user_check = db_client.table("login_data").select("*").eq("username", username).execute()
+    except Exception as e:
+        return jsonify({"error" : "user_check query error"})
 
     if (len(user_check.data) > 0):
         return jsonify({"error": "User already exists"})
@@ -78,7 +81,7 @@ def signup():
                                             "email_id": email_id}).execute())
         return jsonify({"register": "true"})
     except Exception as e:
-        return jsonify({"error" : "Query error"})
+        return jsonify({"error" : "insert query error"})
 
 @app.route("/dashboard")
 def dashboard():
