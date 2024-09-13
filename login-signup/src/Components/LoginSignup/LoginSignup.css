@@ -1,5 +1,18 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('E://Code//Projects//MockMate//login-signup//src//Components//LoginSignup//bluecyber.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .container{
-    background-image: url('bluecyber.gif');
     display:flex;
     flex-direction: column;
     margin:auto;
@@ -81,6 +94,33 @@
     margin: 60px auto;
 }
 
+.main-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height:59px;
+    color: white;
+    background: rgb(0, 226, 75);
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.secondary-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height:59px;
+    color: white;
+    background: rgb(0, 42, 255);
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
 .submit{
     display: flex;
@@ -89,7 +129,6 @@
     width: 220px;
     height:59px;
     color: white;
-    background: blue;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
