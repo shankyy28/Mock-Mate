@@ -66,6 +66,7 @@ body {
 }
 
 .input input{
+    margin-left: 5px;
     height:50px;
     width: 400px;
     background: transparent;
@@ -140,3 +141,7 @@ body {
     color: #676767;
 }
 
+.message{
+    display: flex;
+    justify-content: center;
+}
