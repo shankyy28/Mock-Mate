@@ -39,7 +39,7 @@ const LoginSignup = () => {
                 setMessage(`${action} successful!`);
                 // Redirect to dashboard or handle successful login/signup
             } else {
-                setMessage(`${action} failed: ${result.message || 'Unknown error'}`);
+                setMessage(`${action} failed: ${result.error || 'Unknown error'}`);
                 // Handle error (e.g., show error message to user)
             }
         } catch (error) {
