@@ -1,5 +1,12 @@
+body {
+    background-image: url('E://Code//Projects//MockMate//login-signup//src//Components//LoginSignup//bluecyber.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .container{
-    background-image: url('bluecyber.gif');
     display:flex;
     flex-direction: column;
     margin:auto;
@@ -81,6 +88,13 @@
     margin: 60px auto;
 }
 
+.main-button{
+    background: blue;
+}
+
+.secondary-button{
+    background: rgb(193, 193, 255);
+}
 
 .submit{
     display: flex;
@@ -89,7 +103,6 @@
     width: 220px;
     height:59px;
     color: white;
-    background: blue;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
@@ -101,3 +114,7 @@
     color: #676767;
 }
 
+.message{
+    display: flex;
+    justify-content: center;
+}

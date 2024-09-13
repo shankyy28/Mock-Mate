@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, session
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
@@ -11,6 +12,8 @@ db_client = connect_client()
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 CORS(app)
+
+app.secret_key = os.urandom(24)
 
 @app.route("/")
 def index():
@@ -37,22 +40,23 @@ def login():
     data = request.json
     username = data.get("username")
     password = data.get("password")
+    print(data)
     
     response = (db_client.table("login_data").select("*").eq("username", username).execute())
 
     if (len(response.data) == 0):
-        return jsonify({"error": "User does not exist"})
+        return jsonify({"error": "User does not exist"}), 404
     
     try:
         response = db_client.table("login_data").select("password").eq("username", username).execute()
         pass_check = response.data[0]['password']
         if (bcrypt.check_password_hash(pass_check, password)):
             session["username"] = username
-            return jsonify({"login": "true"})
+            return jsonify({"login": "true"}), 200
         else:
-            return jsonify({"error": "password incorrect"})
+            return jsonify({"error": "password incorrect"}), 400
     except Exception as e:
-        return jsonify({"error" : "Query error"})
+        return jsonify({"error" : "Query error"}), 500
 
 @app.route("/signup", methods = ['POST'])
 def signup():
@@ -62,14 +66,15 @@ def signup():
     password = data.get("password")
     full_name = data.get("fullname")
     email_id = data.get("email")
+    print(data)
 
     try:
         user_check = db_client.table("login_data").select("*").eq("username", username).execute()
     except Exception as e:
-        return jsonify({"error" : "user_check query error"})
+        return jsonify({"error" : "user_check query error"}), 500
 
     if (len(user_check.data) > 0):
-        return jsonify({"error": "User already exists"})
+        return jsonify({"error": "User already exists"}), 403
 
     hashed_password = bcrypt.generate_password_hash(password = password)
     hashed_password_str = hashed_password.decode('utf-8')  # stringify
@@ -79,9 +84,9 @@ def signup():
                                             "password": hashed_password_str,
                                             "full_name": full_name,
                                             "email_id": email_id}).execute())
-        return jsonify({"register": "true"})
+        return jsonify({"register": "true"}), 200
     except Exception as e:
-        return jsonify({"error" : "insert query error"})
+        return jsonify({"error" : "insert query error"}), 500
 
 @app.route("/dashboard")
 def dashboard():

@@ -6,9 +6,10 @@ import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 
 const LoginSignup = () => {
+    const [message, setMessage] = useState("");
     const [action, setAction] = useState("Login");
     const [formData, setFormData] = useState({
-        fullName: "",
+        fullname: "",
         username: "",
         email: "",
         password: ""
@@ -35,13 +36,15 @@ const LoginSignup = () => {
             
             const result = await response.json();
             if (response.ok) {
-                console.log(`${action} successful!`, result);
-                // head to dashboard
+                setMessage(`${action} successful!`);
+                // Redirect to dashboard or handle successful login/signup
             } else {
-                console.error(`${action} failed`, result);
+                setMessage(`${action} failed: ${result.message || 'Unknown error'}`);
+                // Handle error (e.g., show error message to user)
             }
-        }catch (error) {
-            console.error("Error:", error);
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+            // Handle network errors
         }
     };
 
@@ -55,18 +58,17 @@ const LoginSignup = () => {
                 {action === "Sign Up" && (
                     <>
                         <div className="input">
-                            <img src={user_icon} alt="" />
+                            <img src={user_icon} alt="Full Name" />
                             <input
                                 type="text"
                                 placeholder="Full Name"
-                                name="fullName"
-                                value={formData.fullName}
+                                name="fullname"
+                                value={formData.fullname}
                                 onChange={handleInputChange}
                             />
                         </div>
                         <div className="input">
-                            
-                            <img src={email_icon} alt="" />
+                            <img src={email_icon} alt="Email" />
                             <input
                                 type="email"
                                 placeholder="Email Id"
@@ -75,55 +77,28 @@ const LoginSignup = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="input">
-                            <img src={user_icon} alt="" />
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="input">
-                            <img src={password_icon} alt="" />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                            />
-                        </div>
                     </>
                 )}
-
-                {action === "Login" && (
-                    <>
-                        <div className="input">
-                            <img src={user_icon} alt="" />
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="input">
-                            <img src={password_icon} alt="" />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    </>
-                )}
-
-
+                <div className="input">
+                    <img src={user_icon} alt="Username" />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div className="input">
+                    <img src={password_icon} alt="Password" />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                    />
+                </div>
             </div>
 
             {action === "Login" && (
@@ -133,21 +108,18 @@ const LoginSignup = () => {
             )}
 
             <div className="submit-container">
-                <div className="submit main-button" onClick={handleSubmit}>
-                    {action === "Login" ? "Login" : "Sign Up"}
+                <div className={`submit main-button`} onClick={handleSubmit}>
+                    {action}
                 </div>
-
-                {action === "Login" && (
-                    <div className="submit secondary-button" onClick={() => setAction("Sign Up")}>
-                        Sign Up
-                    </div>
-                )}
-
-                {action === "Sign Up" && (
-                    <div className="submit secondary-button" onClick={() => setAction("Login")}>
-                        Login
-                    </div>
-                )}
+                <div 
+                    className={`submit secondary-button`} 
+                    onClick={() => setAction(action === "Login" ? "Sign Up" : "Login")}
+                >
+                    {action === "Login" ? "Sign Up" : "Login"}
+                </div>
+            </div>
+            <div>
+                {message && <div className="message">{message}</div>}
             </div>
         </div>
     );
