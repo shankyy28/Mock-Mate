@@ -8,7 +8,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 const Topbar = () => {
     return <div>Topbar</div>
-    const theme = useTheme();
+    const theme = darkTheme();
     const colors = tokens();
 
 
