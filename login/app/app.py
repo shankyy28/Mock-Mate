@@ -74,7 +74,7 @@ def signup():
         return jsonify({"error" : "user_check query error"}), 500
 
     if (len(user_check.data) > 0):
-        return jsonify({"error": "User already exists"}), 403
+        return jsonify({"error": "User already exists"}), 409
 
     hashed_password = bcrypt.generate_password_hash(password = password)
     hashed_password_str = hashed_password.decode('utf-8')  # stringify
