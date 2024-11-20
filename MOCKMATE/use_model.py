@@ -1,4 +1,4 @@
-from MOCKMATE.Llama.model import loadmodel
+from MOCKMATE.model import loadmodel
 
 class InterviewQuestionGenerator:
     def __init__(self):
