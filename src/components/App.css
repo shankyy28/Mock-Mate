@@ -1,0 +1,105 @@
+/* Set background color for the entire screen */
+body {
+  background-color: #333; /* Dark grey background */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: black; /* Default text color */
+}
+
+/* Container styling (box)*/
+
+.container {
+  max-width: 600px;
+  margin: 100px auto; /* Center content vertically and horizontally */
+  padding: 20px;
+  background-color:white ;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h2 {
+  text-align: center;
+  color: #800080; /* Purple color for heading */
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.upload-status {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+}
+
+.upload-status p {
+  margin: 0;
+}
+
+
+/* Input and button styling */
+input[type="file"] {
+  display: block;
+  margin: 20px 0;
+  font-size: 16px;
+  
+}
+
+select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/*UPLOAD RESUME*/
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: darkblue;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Section styling for predicted results */
+section {
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  color:purple;
+}
+
+p {
+  font-size: 16px;
+  color: #333; /* Black text for paragraph */
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  font-size: 16px;
+  color: #333;
+  padding: 5px 0;
+}
+
