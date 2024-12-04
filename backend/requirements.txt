@@ -1,7 +1,8 @@
-flask
-joblib
-numpy
-pandas
-scikit-learn
-whisper
-transformers
+Flask==3.1.0
+joblib==1.4.2
+nltk==3.9.1
+PyPDF2==3.0.1
+scikit_learn==1.5.2
+spacy==3.8.2
+transformers==4.46.3
+whisper==1.1.10
