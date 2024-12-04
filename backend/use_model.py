@@ -1,4 +1,4 @@
-from backend.model import loadmodel
+from model import loadmodel
 
 class InterviewQuestionGenerator:
     def __init__(self):

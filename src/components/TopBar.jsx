@@ -11,7 +11,7 @@ const TopBar = ({ toggleSidebar }) => {
           <MenuIcon /> {/* Material UI icon for sidebar toggle */}
         </IconButton>
         <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Cursive, sans-serif' }}>
-          MockMate: An AI Interview Simulator
+          MockMate: An AI Interview Simulator  
         </Typography>
         <div style={{ position: 'relative', marginRight: '20px' }}>
           <InputBase

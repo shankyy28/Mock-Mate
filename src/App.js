@@ -13,23 +13,14 @@ import ResumeAnalysis from './pages/ResumeAnalysis';
 import Feedback from './pages/Feedback';
 import PerformanceMetrics from './pages/PerformanceMetrics';
 import UserEngagement from './pages/UserEngagement';
-import ResumeUploader from './components/ResumeUploader'; // Import ResumeUploader
+import ResumeUploader from './components/ResumeUploader';
 import darkTheme from './theme/theme';
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [workflowStep, setWorkflowStep] = useState("dashboard"); // Track the workflow step
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
-  };
-
-  const startInterviewProcess = () => {
-    setWorkflowStep("resumeParsing"); // Move to resume parsing
-  };
-
-  const handleResumeParsed = () => {
-    setWorkflowStep("interviewData"); // Move to the interview data step after parsing
   };
 
   return (
@@ -38,16 +29,11 @@ const App = () => {
       <Router>
         <TopBar toggleSidebar={toggleSidebar} />
         <SideBar open={sidebarOpen} toggleSidebar={toggleSidebar} />
-        <div>
-          {workflowStep === "dashboard" && (
-            <DashboardContent startInterview={startInterviewProcess} /> // Pass the handler for starting the interview process
-          )}
-          {workflowStep === "resumeParsing" && (
-            <ResumeUploader onResumeParsed={handleResumeParsed} /> // Pass the handler for resume parsing
-          )}
-          {workflowStep === "interviewData" && <InterviewData />} {/* Move to interview step */}
-        </div>
+        
         <Routes>
+          <Route path="/" element={<DashboardContent />} />
+          <Route path="/start-interview" element={<ResumeUploader />} />
+          <Route path="/interview-data" element={<InterviewData />} />
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/scores" element={<Scores />} />
