@@ -9,6 +9,7 @@ import PyPDF2
 from io import BytesIO
 
 # Load models and resources
+spacy.cli.download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
 loaded_classifier = joblib.load('backend/svm_model.joblib')
 loaded_vectorizer = joblib.load('backend/tfidf_vectorizer.joblib')
@@ -33,13 +34,7 @@ def preprocess_resume(resume_text):
 def extract_technical_skills(resume_tokens):
     skills_in_resume = [skill for skill in resume_tokens if skill in technical_skills]
     unique_skills = list(set(skills_in_resume))  # Remove duplicates
-    return unique_skills[:10]  # Return the top 10 unique skills
-
-def predict_job_profile(resume_text):
-    preprocessed_resume = preprocess_resume(resume_text)
-    resume_vectorized = loaded_vectorizer.transform([' '.join(preprocessed_resume)])
-    predicted_category = loaded_classifier.predict(resume_vectorized)[0]
-    return predicted_category
+    return unique_skills[:4]  # Return the top 4 unique skills
 
 def extract_text_from_pdf(pdf_file):
     pdf_file_io = BytesIO(pdf_file)  # Convert raw content to a file-like object
@@ -49,14 +44,11 @@ def extract_text_from_pdf(pdf_file):
         resume_text += page.extract_text() or ''  # Ensure we concatenate even if no text found
     return resume_text
 
-def process_resume(file, experience):
+def process_resume(file):
     pdf_content = file.read()
     resume_text = extract_text_from_pdf(pdf_content)
 
     resume_tokens = preprocess_resume(resume_text)
-    predicted_category = predict_job_profile(' '.join(resume_tokens))
     top_technical_skills = extract_technical_skills(resume_tokens)
 
-    # Optionally, you can add experience-specific logic to adjust the response or predictions
-    # For now, we'll include the experience in the response
-    return predicted_category, top_technical_skills
+    return top_technical_skills

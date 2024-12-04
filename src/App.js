@@ -14,6 +14,7 @@ import Feedback from './pages/Feedback';
 import PerformanceMetrics from './pages/PerformanceMetrics';
 import UserEngagement from './pages/UserEngagement';
 import ResumeUploader from './components/ResumeUploader';
+import WhisperRecorder from './components/WhisperRecorder';
 import darkTheme from './theme/theme';
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/performance-metrics" element={<PerformanceMetrics />} />
           <Route path="/user-engagement" element={<UserEngagement />} />
+          <Route path = "/whisper-audio" element={<WhisperRecorder />} />
         </Routes>
       </Router>
     </ThemeProvider>

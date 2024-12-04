@@ -12,7 +12,7 @@ const WhisperRecorder = ({ onTranscription }) => {
       formData.append("audio", mockAudioBlob);
 
       try {
-        const response = await axios.post("http://127.0.0.1:5000/whisper/transcribe", formData, {
+        const response = await axios.post("http://127.0.0.1:5000/whisper", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         onTranscription(response.data.transcription);
