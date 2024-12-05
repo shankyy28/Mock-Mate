@@ -23,7 +23,7 @@ const ResumeUploader = () => {
     formData.append("experience", experience);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/upload-resume/", formData, {
+      const response = await axios.post("http://127.0.0.1:8000/start-interview/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setJobProfile(response.data.predicted_category);

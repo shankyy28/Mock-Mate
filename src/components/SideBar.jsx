@@ -43,6 +43,7 @@ const SideBar = ({ open, toggleSidebar }) => {
           { text: 'Feedback', icon: <Feedback />, path: '/feedback' },
           { text: 'Performance Metrics', icon: <Assessment />, path: '/performance-metrics' },
           { text: 'User Engagement', icon: <Assessment />, path: '/user-engagement' },
+          { text: 'User Engagement', icon: <Assessment />, path: '/user-engagement' }
         ].map((item, index) => (
           <ListItem 
             button 

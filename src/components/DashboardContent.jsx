@@ -117,7 +117,7 @@ const DashboardContent = () => {
             variant="contained"
             color="primary"
             size="large"
-            onClick={() => navigate('/resume-uploader')} // Navigate to the Resume Uploader
+            onClick={() => navigate('/resume-uploader')} // Navigate to the Resume Uploader 
             sx={{
               marginTop: '16px',
               backgroundColor: theme.palette.greenAccent[500],

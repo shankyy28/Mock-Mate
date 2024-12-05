@@ -5,8 +5,6 @@ from use_model import InterviewQuestionGenerator
 from load_whisper import load_whisper
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'backend/uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 whisper_model = load_whisper()
 
 # Loading llama service
@@ -23,7 +21,8 @@ def start_interview():
     try:
         data = request.json
         resume_pdf = data["resume_pdf"]
-        job_role = data["job_role"]
+        # job_role = data["job_role"]
+        job_role = "SDE"
         experience_level = data["experience_level"]
 
         skills = process_resume(resume_pdf)

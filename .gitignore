@@ -4,6 +4,8 @@
 .pnp.js
 package-lock.json
 backend/__pycache__
+backend/models
+.env
 
 # testing
 /coverage

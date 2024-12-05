@@ -9,10 +9,10 @@ import PyPDF2
 from io import BytesIO
 
 # Load models and resources
-spacy.cli.download("en_core_web_sm")
+#spacy.cli.download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
-loaded_classifier = joblib.load('backend/svm_model.joblib')
-loaded_vectorizer = joblib.load('backend/tfidf_vectorizer.joblib')
+loaded_classifier = joblib.load('backend\\svm_model.joblib')
+loaded_vectorizer = joblib.load('backend\\tfidf_vectorizer.joblib')
 
 stop_words = set(stopwords.words('english'))
 
