@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import './App.css';
 
-const ResumeUploader = ({ onResumeParsed }) => {
+const ResumeUploader = () => {
   const [file, setFile] = useState(null);
   const [jobProfile, setJobProfile] = useState("");
   const [skills, setSkills] = useState([]);
   const [experience, setExperience] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState("");
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -24,29 +22,37 @@ const ResumeUploader = ({ onResumeParsed }) => {
     formData.append("file", file);
     formData.append("experience", experience);
 
-    setLoading(true);
-    setUploadStatus("Uploading...");
-
     try {
       const response = await axios.post("http://127.0.0.1:8000/upload-resume/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
-      // Update the state with parsed data from response
       setJobProfile(response.data.predicted_category);
       setSkills(response.data.top_skills);
-      setUploadStatus("Upload Successful! Parsing complete.");
-
-      // Notify the parent component after processing
-      setTimeout(() => {
-        onResumeParsed();
-      }, 2000);
     } catch (error) {
       console.error("Error uploading file:", error);
-      alert("Failed to process the resume. Please try again.");
-      setUploadStatus("Upload Failed. Please try again.");
-    } finally {
-      setLoading(false);
+      alert("Failed to process the resume.");
+    }
+  };
+
+  const handleStartInterview = async () => {
+    if (!jobProfile || !skills.length || !experience) {
+      alert("Please make sure you have a job profile, skills, and experience level.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/start-interview", {
+        resume_pdf: file.name, // or use any identifier for the uploaded file
+        job_role: jobProfile,
+        experience_level: experience,
+        skills: skills,
+      });
+      
+      // Here, we just log the response for debugging purposes
+      console.log("Interview questions generated:", response.data.questions);
+    } catch (error) {
+      console.error("Error starting the interview:", error);
+      alert("Failed to generate interview questions.");
     }
   };
 
@@ -69,16 +75,7 @@ const ResumeUploader = ({ onResumeParsed }) => {
         <option value="professional:5+">Professional: 5+ years</option>
       </select>
 
-      <button onClick={handleUpload} disabled={loading}>
-        {loading ? "Uploading..." : "Upload Resume"}
-      </button>
-
-      {/* Status message for upload */}
-      {uploadStatus && (
-        <div className="upload-status">
-          <p>{uploadStatus}</p>
-        </div>
-      )}
+      <button onClick={handleUpload}>Upload Resume</button>
 
       {jobProfile && (
         <section>
@@ -96,6 +93,10 @@ const ResumeUploader = ({ onResumeParsed }) => {
             ))}
           </ul>
         </section>
+      )}
+
+      {jobProfile && skills.length > 0 && (
+        <button onClick={handleStartInterview}>Start Interview</button>
       )}
     </div>
   );
