@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from backend.use_model import InterviewQuestionGenerator  # Confirm this path is correct
+from use_model import InterviewQuestionGenerator  # Confirm this path is correct
 
 app = Flask(__name__)
 generator = InterviewQuestionGenerator()

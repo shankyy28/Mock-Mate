@@ -1,18 +1,23 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import SVC
 import joblib
 import spacy
 import string
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import PyPDF2
 from io import BytesIO
 
+# Ignores incompatible versions warning
+import warnings
+warnings.filterwarnings("ignore")
+
 # Load models and resources
-#spacy.cli.download("en_core_web_sm")
+# nltk.download('stopwords')
+# nltk.download('punkt_tab')
+# spacy.cli.download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
-loaded_classifier = joblib.load('backend\\svm_model.joblib')
-loaded_vectorizer = joblib.load('backend\\tfidf_vectorizer.joblib')
+loaded_classifier = joblib.load('SERVER/svm_model.joblib')
+loaded_vectorizer = joblib.load('SERVER/tfidf_vectorizer.joblib')
 
 stop_words = set(stopwords.words('english'))
 

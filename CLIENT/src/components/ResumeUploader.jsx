@@ -6,6 +6,7 @@ const ResumeUploader = () => {
   const [file, setFile] = useState(null);
   const [jobProfile, setJobProfile] = useState("");
   const [skills, setSkills] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [experience, setExperience] = useState("");
 
   const handleFileChange = (event) => {
@@ -17,22 +18,27 @@ const ResumeUploader = () => {
       alert("Please upload a PDF file and select your experience level.");
       return;
     }
-
+  
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("resume_pdf", file);
     formData.append("experience", experience);
-
+    formData.append("job_profile", jobProfile);
+  
     try {
-      const response = await axios.post("http://127.0.0.1:8000/start-interview/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setJobProfile(response.data.predicted_category);
-      setSkills(response.data.top_skills);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/start-interview",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log(response.data);
+      setJobProfile(response.data.job_role);
+      setSkills(response.data.skills);
+      setQuestions(response.data.questions);
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("Failed to process the resume.");
     }
-  };
+  };  
 
   const handleStartInterview = async () => {
     if (!jobProfile || !skills.length || !experience) {
@@ -75,6 +81,14 @@ const ResumeUploader = () => {
         <option value="professional:5+">Professional: 5+ years</option>
       </select>
 
+      <input
+        type="text"
+        id="jobProfile"
+        value={jobProfile}
+        onChange={(e) => setJobProfile(e.target.value)}
+        placeholder="Enter Job Profile"
+      />
+
       <button onClick={handleUpload}>Upload Resume</button>
 
       {jobProfile && (
@@ -89,6 +103,17 @@ const ResumeUploader = () => {
           <h3>Top Skills:</h3>
           <ul>
             {skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {questions.length > 0 && (
+        <section>
+          <h3>Questions:</h3>
+          <ul>
+            {questions.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>

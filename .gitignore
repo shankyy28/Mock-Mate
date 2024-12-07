@@ -1,11 +1,11 @@
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 package-lock.json
-backend/__pycache__
-backend/models
+SERVER/__pycache__
 .env
+react-admin
 
 # testing
 /coverage
