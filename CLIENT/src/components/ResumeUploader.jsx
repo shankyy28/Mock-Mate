@@ -8,6 +8,7 @@ const ResumeUploader = () => {
   const [skills, setSkills] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [experience, setExperience] = useState("");
+  
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -68,7 +69,7 @@ const ResumeUploader = () => {
       <input type="file" accept=".pdf" onChange={handleFileChange} />
 
       {/* Dropdown for experience level */}
-      <label htmlFor="experience">Select Experience Level:</label>
+      <label htmlFor="experience"><h3>Select Experience Level</h3></label>
       <select
         id="experience"
         value={experience}
@@ -81,19 +82,25 @@ const ResumeUploader = () => {
         <option value="professional:5+">Professional: 5+ years</option>
       </select>
 
-      <input
-        type="text"
-        id="jobProfile"
-        value={jobProfile}
-        onChange={(e) => setJobProfile(e.target.value)}
-        placeholder="Enter Job Profile"
-      />
+      
+
+      <div className="job-profile-section">
+        <h3>Job Profile</h3>
+        <input
+          type="text"
+          id="jobProfile"
+          value={jobProfile}
+          onChange={(e) => setJobProfile(e.target.value)}
+          placeholder="Enter Job Profile"
+        />
+      </div>
 
       <button onClick={handleUpload}>Upload Resume</button>
+      
 
       {jobProfile && (
         <section>
-          <h3>Predicted Job Profile:</h3>
+          <h3>Confirmed Job Profile</h3>
           <p>{jobProfile}</p>
         </section>
       )}
