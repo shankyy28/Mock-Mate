@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 
 const ResumeUploader = () => {
   const [file, setFile] = useState(null);
   const [jobProfile, setJobProfile] = useState("");
   const [skills, setSkills] = useState([]);
-  const [questions, setQuestions] = useState([]);
+  // const [questions, setQuestions] = useState([]);
   const [experience, setExperience] = useState("");
+  const navigate = useNavigate();
   
 
   const handleFileChange = (event) => {
@@ -27,14 +29,14 @@ const ResumeUploader = () => {
   
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/start-interview",
+        "http://127.0.0.1:8000/resume-parser",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log(response.data);
       setJobProfile(response.data.job_role);
       setSkills(response.data.skills);
-      setQuestions(response.data.questions);
+      // setQuestions(response.data.questions);
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("Failed to process the resume.");
@@ -48,7 +50,7 @@ const ResumeUploader = () => {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/start-interview", {
+      const response = await axios.post("http://127.0.0.1:8000/resume-parser", {
         resume_pdf: file.name, // or use any identifier for the uploaded file
         job_role: jobProfile,
         experience_level: experience,
@@ -56,11 +58,16 @@ const ResumeUploader = () => {
       });
       
       // Here, we just log the response for debugging purposes
-      console.log("Interview questions generated:", response.data.questions);
-    } catch (error) {
-      console.error("Error starting the interview:", error);
-      alert("Failed to generate interview questions.");
-    }
+    //   console.log("Interview questions generated:", response.data.questions);
+    // } catch (error) {
+    //   console.error("Error starting the interview:", error);
+    //   alert("Failed to generate interview questions.");
+    // }
+  } catch (error) {
+    console.error("Error uploading file:", error); //temp
+    alert("Failed to process the resume.");
+  }
+
   };
 
   return (
@@ -116,7 +123,7 @@ const ResumeUploader = () => {
         </section>
       )}
 
-      {questions.length > 0 && (
+      {/* {questions.length > 0 && (
         <section>
           <h3>Questions:</h3>
           <ul>
@@ -125,10 +132,10 @@ const ResumeUploader = () => {
             ))}
           </ul>
         </section>
-      )}
+      )} */}
 
       {jobProfile && skills.length > 0 && (
-        <button onClick={handleStartInterview}>Start Interview</button>
+        <button onClick={()=> navigate('/start-interview')}>Start Interview</button>
       )}
     </div>
   );

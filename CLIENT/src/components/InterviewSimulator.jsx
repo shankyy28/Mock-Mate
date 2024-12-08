@@ -13,7 +13,7 @@ const InterviewSimulator = ({ parsedData }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/llama/generate_questions", {
+        const response = await axios.post("http://127.0.0.1:8000/start-interview", {    /*llama/generate_questions*/
           job_role: jobRole,
           skills,
           experience_level: experienceLevel,

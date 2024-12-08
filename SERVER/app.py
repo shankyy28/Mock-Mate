@@ -9,6 +9,9 @@ app = Flask(__name__)
 CORS(app)
 whisper_model = load_whisper()
 
+store_questions = []
+answers = []
+
 # Loading llama service
 generator = InterviewQuestionGenerator()
 
@@ -24,9 +27,9 @@ def transcribe_audio():
     transcription = whisper_model.transcribe(audio_file)["text"]
     return jsonify({"transcription": transcription})
 
-@app.route("/start-interview", methods=["POST", "GET"])
-def start_interview():
-    print("start-interview")
+@app.route("/resume-parser", methods=["POST", "GET"])
+def resumeparser():
+    print("resume-parser")
     try:
         if "resume_pdf" not in request.files:
             return jsonify({"error": "No resume file provided"}), 400
@@ -43,15 +46,35 @@ def start_interview():
 
         skills = process_resume(file)
 
-        questions = generator.generate_questions(job_role, skills, experience_level)
-        print(questions)
-        return jsonify({"job_role": job_role, "skills": skills, "questions": questions})
+        store_questions.append(generator.generate_questions(job_role, skills, experience_level))
+
+        return jsonify({"job_role": job_role, "skills": skills})
     except Exception as e:
         print("Error during file handling:", str(e))
         return jsonify({"error": str(e)}), 500
 
+@app.route("/fetch-questions", methods=["GET"])
+def fetch_questions():
+    print("fetch-questions")
+    try:
+        questions = store_questions[-1]
 
-@app.route("/llama/evaluate_responses", methods=["POST", "GET"])
+        return jsonify({"questions": questions})
+    except Exception as e:
+        print("Error during questions fetching:", str(e))
+        return jsonify({"error": str(e)}), 500
+    
+@app.route("/store-answers", methods=["POST", "GET"])
+def store_answers():
+    print("store-answers")
+    try:
+        data = request.data
+        answers.append(str(data["answers"]))
+    except Exception as e:
+        print("Error during storing answer:", str(e))
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/evaluate_responses", methods=["POST", "GET"])
 def evaluate_responses():
     print("evaluate-responses")
     try:

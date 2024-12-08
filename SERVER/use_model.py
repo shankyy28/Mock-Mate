@@ -78,10 +78,10 @@ class InterviewQuestionGenerator:
     questions = generator.generate_questions(job_role, skills, experience_level)
     print(questions) '''
 
-if __name__ == "__main__":
-    generator = InterviewQuestionGenerator()
-    questions = ['What is the difference between static and instance variables in Java, and when would you use each?',  'What is the time complexity of the Bubble Sort algorithm?']
-    answers = ['Hello World', "The bubble sort algorithm's average/worst time complexity is O(n²), as we have to pass through the array as many times as there are pairs in a provided array. Therefore, when time is a factor, there may be better options. Worst-case time complexity: O(n²)."]
+# if __name__ == "__main__":
+#     generator = InterviewQuestionGenerator()
+#     questions = ['What is the difference between static and instance variables in Java, and when would you use each?',  'What is the time complexity of the Bubble Sort algorithm?']
+#     answers = ['Hello World', "The bubble sort algorithm's average/worst time complexity is O(n²), as we have to pass through the array as many times as there are pairs in a provided array. Therefore, when time is a factor, there may be better options. Worst-case time complexity: O(n²)."]
     
-    feedback = generator.evaluate_responses(questions, answers)
-    print(feedback)
+#     feedback = generator.evaluate_responses(questions, answers)
+#     print(feedback)
