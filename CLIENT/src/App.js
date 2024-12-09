@@ -26,24 +26,24 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme = {darkTheme}>
       <CssBaseline />
       <Router>
-        <TopBar toggleSidebar={toggleSidebar} />
-        <SideBar open={sidebarOpen} toggleSidebar={toggleSidebar} />
+        <TopBar toggleSideba = {toggleSidebar} />
+        <SideBar open={sidebarOpen} toggleSidebar = {toggleSidebar} />
         
         <Routes>
-          <Route path="/" element={<DashboardContent />} />
-          <Route path="/resume-uploader" element={<ResumeUploader />} />
-          <Route path="/interview-data" element={<InterviewData />} />
-          <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/scores" element={<Scores />} />
-          <Route path="/resume-analysis" element={<ResumeAnalysis />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/performance-metrics" element={<PerformanceMetrics />} />
-          <Route path="/user-engagement" element={<UserEngagement />} />
-          <Route path = "/whisper-audio" element={<WhisperRecorder />} />
+          <Route path = "/" element = {<DashboardContent />} />
+          <Route path = "/resume-uploader" element = {<ResumeUploader />} />
+          <Route path = "/interview-data" element = {<InterviewData />} />
+          <Route path = "/user-profile" element = {<UserProfile />} />
+          <Route path = "/faq" element = {<FAQ />} />
+          <Route path = "/scores" element = {<Scores />} />
+          <Route path = "/resume-analysis" element = {<ResumeAnalysis />} />
+          <Route path = "/feedback" element = {<Feedback />} />
+          <Route path = "/performance-metrics" element = {<PerformanceMetrics />} />
+          <Route path = "/user-engagement" element = {<UserEngagement />} />
+          <Route path = "/whisper-audio" element = {<WhisperRecorder />} />
           <Route path = "/start-interview" element = {<Interview/>} />
         </Routes>
       </Router>

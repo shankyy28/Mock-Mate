@@ -57,17 +57,25 @@ class InterviewQuestionGenerator:
         for i, (question, response) in enumerate(zip(questions, responses), start=1):
             prompt += f"Question {i}: {question}\nAnswer: {response}\n\n"
         prompt += (
-        "For each question, evaluate whether the answer directly addresses the question, demonstrates an understanding of the topic, and is relevant. Highlight any inaccuracies, irrelevant responses, or gaps in understanding. "
-        "Then, provide detailed feedback on the candidate's overall performance, assign a score out of 10, and recommend areas for improvement."
+        " Assess each answer based on its directness, understanding of the topic, relevance, and accuracy. Provide feedback that highlights strength of the response (if any), any gaps in understanding or inaccuracies and specific recommendatons for improvement. Provide feedback only, no scores or evaluation metrics."
         )
 
         # Tokenize input
         inputs = self.tokenizer(prompt, return_tensors="pt")
-        outputs = self.model.generate(inputs.input_ids, max_length=700, temperature=0.7, num_return_sequences=1)
+        outputs = self.model.generate(inputs.input_ids, max_length=1500, temperature=0.7, num_return_sequences=1)
 
         feedback_output = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        return feedback_output
+        result_string = feedback_output.replace(prompt, "")
+
+        new_Lis = result_string.split(sep = "**")
+
+        new_str = ""
+
+        for i in new_Lis:
+            new_str += i + '\n'
+
+        return new_str
     
 '''if __name__ == "__main__":
     generator = InterviewQuestionGenerator()
