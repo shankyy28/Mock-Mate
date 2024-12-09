@@ -38,7 +38,7 @@ class InterviewQuestionGenerator:
             sentence = sentence[:len(sentence)-1]
             final_questions.append(sentence)
 
-        return final_questions
+        return final_questions[:10]
     
 # Response Evaluation and Feeback by Llama
 
