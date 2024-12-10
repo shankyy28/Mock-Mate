@@ -89,17 +89,19 @@ MockMate/
 ## Output Screenshots
 
 ### Login & Sign-Up Page
+![WhatsApp Image 2024-12-06 at 11 53 39 (1)](https://github.com/user-attachments/assets/a9f3791a-6d30-4472-9ccb-7ebd6c5805ce)
 
 
 ### Dashboard
+<img width="1009" alt="Screenshot 2024-12-10 at 8 00 26 PM" src="https://github.com/user-attachments/assets/2ea69d2b-251c-402a-817c-0febb041a133">
 
 
 ### Resume Uploader
 ![image](https://github.com/user-attachments/assets/f248cbcd-0128-4fcb-99f1-b7be249eee8b)
 
 
-
 ### Mock Interview Simulator
+<img width="1035" alt="Screenshot 2024-12-10 at 7 56 58 PM" src="https://github.com/user-attachments/assets/c3db7deb-4d62-4f5e-a7e2-aa0b2ee685b0">
 
 
 ---
