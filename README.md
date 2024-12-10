@@ -26,9 +26,9 @@ MockMate/
 │   ├── app.py                        # Backend API server
 │   ├── model.py                      # Load Model file for Llama-3.2-1B-Instruct
 │   ├── resume_parser.py              # Resume Parser Model
-|   ├── svm_model.joblib              # SVM Classifier for Resume Parser Model
-|   ├── tfidf_vectorizer.joblib       # TF-IDF Vectorizer for Resume Parser Model
-|   ├── use_model.py                  # Llama Model for Questions and Feedback Generation
+│   ├── svm_model.joblib              # SVM Classifier for Resume Parser Model
+│   ├── tfidf_vectorizer.joblib       # TF-IDF Vectorizer for Resume Parser Model
+│   ├── use_model.py                  # Llama Model for Questions and Feedback Generation
 ├── README.md       # Project documentation
 ```
 
