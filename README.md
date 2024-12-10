@@ -97,7 +97,7 @@ MockMate/
 
 
 ### Resume Uploader
-![image](https://github.com/user-attachments/assets/f248cbcd-0128-4fcb-99f1-b7be249eee8b)
+<img width="1411" alt="Screenshot 2024-12-10 at 8 18 46 PM" src="https://github.com/user-attachments/assets/a380dba6-20f4-4066-b89f-a7febc7fbadd">
 
 
 ### Mock Interview Simulator
