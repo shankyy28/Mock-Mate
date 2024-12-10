@@ -95,6 +95,8 @@ MockMate/
 
 
 ### Resume Uploader
+![image](https://github.com/user-attachments/assets/f248cbcd-0128-4fcb-99f1-b7be249eee8b)
+
 
 
 ### Mock Interview Simulator
