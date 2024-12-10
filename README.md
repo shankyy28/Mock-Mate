@@ -107,13 +107,25 @@ MockMate/
 ---
 
 ## Technologies Used
-- **Frontend:** React, Material-UI
-- **Backend:** Flask
-- **AI Models:** LLaMA for question and feedback generation
+- **Operating System:**
+  - Windows, macOS, or Linux (Linux distributions like Ubuntu may be better for working with machine learning libraries).
+- **Backend:**
+  - Python 3.7+ for Flask.
+  - Libraries such as Flask, nltk, transformers, etc.
+- **Frontend:**
+  - Node.js for running React.
+  - A modern web browser (Chrome, Firefox) for testing the front end.
+- **Machine Learning Tools:**
+  - TensorFlow or PyTorch for training and running the LSTM model.
+  - NLTK for text preprocessing and analysis.
+- **Development Environment:**
+  - IDEs like VS Code or PyCharm.
+  - Git for version control.
 
 ---
 
 ## Future Enhancements
-- Add real-time feedback using natural language processing.
+- Enable video-based interviews for a more immersive experience.
 - Include mock interview scoring based on verbal and non-verbal cues.
 - Expand support for multiple languages.
+- Integrate an Eye Ball Tracking System to analyze the candidate's eye movement during mock interviews.
