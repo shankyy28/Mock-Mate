@@ -10,9 +10,9 @@ const TopBar = ({ toggleSidebar }) => {
         <IconButton onClick={toggleSidebar} sx={{ color: 'white', marginRight: '16px' }}>
           <MenuIcon /> {/* Material UI icon for sidebar toggle */}
         </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Cursive, sans-serif' }}>
+        {/* <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Cursive, sans-serif' }}>
           MockMate: An AI Interview Simulator  
-        </Typography>
+        </Typography> */}
         <div style={{ position: 'relative', marginRight: '20px' }}>
           <InputBase
             placeholder="Search..."

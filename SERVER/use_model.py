@@ -51,7 +51,7 @@ class InterviewQuestionGenerator:
             prompt += f"Question {i}: {question}\nAnswer: {response}\n\n"
         prompt += "Provide detailed feedback on the candidate's overall performance and assign a score out of 10." '''
 
-        #Evaluation prompt (Test 5)
+        # Evaluation prompt (Test 5)
         prompt = "You are an expert interviewer. Evaluate the candidate's performance based on the following:\n\n"
 
         for i, (question, response) in enumerate(zip(questions, responses), start=1):
@@ -59,6 +59,29 @@ class InterviewQuestionGenerator:
         prompt += (
         " Assess each answer based on its directness, understanding of the topic, relevance, and accuracy. Provide feedback that highlights strength of the response (if any), any gaps in understanding or inaccuracies and specific recommendatons for improvement. Provide feedback only, no scores or evaluation metrics."
         )
+
+        # prompt = ( (test 6)
+        #     "You are an expert interviewer tasked with evaluating a candidate's responses during a technical interview. "
+        # )
+        # for i, (question, response) in enumerate(zip(questions, responses), start=1):
+        #     prompt += f"Question {i}: {question}\nAnswer: {response}\n\n"
+
+        # prompt += (
+        #     "For each question and response pair, evaluate the following criteria:\n"
+        #     "- **Directness**: Is the response clear and concise?\n"
+        #     "- **Understanding**: Does the response reflect a strong grasp of the topic?\n"
+        #     "- **Relevance**: Is the response focused and appropriate to the question?\n"
+        #     "- **Accuracy**: Are the facts and explanations correct?\n\n"
+        #     "Specific Guidelines:\n"
+        #     "- If the response is 'I don't know' or similarly vague, state that this response is inadequate. "
+        #     "Explain why and provide suggestions on how the candidate could improve their knowledge in this area.\n"
+        #     "- Highlight any strengths in the response (if applicable).\n"
+        #     "- Clearly point out gaps, weaknesses, or inaccuracies and recommend precise ways to improve.\n\n"
+        #     "Generate feedback for each question, structured as follows:\n"
+        #     "Feedback for Question <number>: <feedback>\n\n"
+        #     "Do not assign any numerical scores or use metrics in the feedback.\n\n"
+        # )
+        
 
         # Tokenize input
         inputs = self.tokenizer(prompt, return_tensors="pt")
@@ -76,6 +99,7 @@ class InterviewQuestionGenerator:
             new_str += i + '\n'
 
         return new_str
+        
     
 '''if __name__ == "__main__":
     generator = InterviewQuestionGenerator()
